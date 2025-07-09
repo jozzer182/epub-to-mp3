@@ -45,9 +45,6 @@ pip install -r requirements.txt
 
 ---
 
-
----
-
 ### 💻 Si trabajas con Visual Studio Code
 
 1. Abre VS Code.
@@ -59,6 +56,27 @@ pip install -r requirements.txt
 
 > Esto asegura que estás usando el entorno virtual correcto dentro de VS Code.
 
+---
+
+### 🔁 Pasos reproducibles sugeridos (si tienes problemas con las dependencias)
+
+Si al abrir el proyecto en VS Code se resaltan los imports como `ebooklib` o `bs4`, ejecuta estos comandos uno por uno desde tu terminal para asegurar una instalación limpia y compatible con el modelo `xtts_v2`:
+
+```bash
+py -3.10 -m venv venv-epub2mp3
+venv-epub2mp3\Scripts\activate
+python -m pip install --upgrade pip
+pip install git+https://github.com/coqui-ai/TTS.git
+pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118 
+pip install transformers==4.36.2 --force-reinstall
+pip install numpy==1.22.0 --force-reinstall
+pip install beautifulsoup4 ebooklib
+pip install -r requirements.txt
+```
+
+Con estos pasos el entorno debería estar completamente preparado y sin errores de importación en VS Code.
+
+---
 
 ## 📁 Estructura esperada
 
@@ -68,7 +86,6 @@ epub-to-mp3/
 ├── requirements.txt
 ├── vlc.wav              ← voz de referencia
 ├── input/               ← coloca aquí tu archivo .epub
-│   └── mi_libro.epub
 └── output/              ← carpeta vacía, donde se generarán los archivos .mp3
 ```
 
@@ -102,7 +119,7 @@ idioma = "es"  # Cambia por "en", "fr", etc.
 
 ## 📌 Badges
 
-![Python](https://img.shields.io/badge/Python-3.9%2B-blue?logo=python)
+![Python](https://img.shields.io/badge/Python-3.10-blue?logo=python)
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 ![Offline-TTS](https://img.shields.io/badge/TTS-Offline%20xtts_v2-critical?logo=soundcloud)
 ![Status](https://img.shields.io/badge/Estado-Activo-brightgreen)
