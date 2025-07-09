@@ -16,7 +16,7 @@ Convierte automáticamente el **primer archivo EPUB** encontrado en la carpeta `
 
 ## 🛠️ Requisitos
 
-- Python 3.9 o superior
+- Python **3.10** (específicamente requerido para compatibilidad con el modelo xtts_v2)
 - NVIDIA GPU (recomendado)
 - [ffmpeg](https://ffmpeg.org/) instalado y accesible desde terminal
 - Archivo de voz de referencia (`vlc.wav`) ubicado en la raíz del proyecto
@@ -25,10 +25,15 @@ Convierte automáticamente el **primer archivo EPUB** encontrado en la carpeta `
 
 ## 📦 Instalación
 
+En tu terminal ejecuta lo siguiente:
+
 ```bash
-# Crear entorno virtual (opcional pero recomendado)
-python -m venv venv
-source venv/bin/activate  # En Windows: venv\Scripts\activate
+:: Crear entorno virtual (opcional pero recomendado)
+py -3.10 -m venv venv-epub2mp3
+venv-epub2mp3\Scripts\activate
+
+# En Linux/MacOS usa:
+# source venv-epub2mp3/bin/activate
 
 # Clonar el repositorio
 git clone https://github.com/jozzer182/epub-to-mp3.git
@@ -39,6 +44,21 @@ pip install -r requirements.txt
 ```
 
 ---
+
+
+---
+
+### 💻 Si trabajas con Visual Studio Code
+
+1. Abre VS Code.
+2. Ve al menú `Archivo` → `Abrir carpeta...` y selecciona la carpeta `epub-to-mp3`.
+3. Abre la paleta de comandos con `Ctrl+Shift+P` (o `F1`).
+4. Escribe y selecciona: `Python: Select Interpreter`.
+5. Elige el entorno `venv-epub2mp3` (debería aparecer con la ruta `./venv-epub2mp3/Scripts/python.exe` o similar).
+6. Abre el archivo `main.py` y presiona `F5` o haz clic en el botón ▶️ para ejecutar.
+
+> Esto asegura que estás usando el entorno virtual correcto dentro de VS Code.
+
 
 ## 📁 Estructura esperada
 
