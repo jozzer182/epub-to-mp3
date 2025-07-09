@@ -31,7 +31,7 @@ python -m venv venv
 source venv/bin/activate  # En Windows: venv\Scripts\activate
 
 # Clonar el repositorio
-git clone https://github.com/tuusuario/epub-to-mp3.git
+git clone https://github.com/jozzer182/epub-to-mp3.git
 cd epub-to-mp3
 
 # Instalar dependencias
@@ -49,7 +49,7 @@ epub-to-mp3/
 ├── vlc.wav              ← voz de referencia
 ├── input/               ← coloca aquí tu archivo .epub
 │   └── mi_libro.epub
-└── output/              ← aquí se generarán los archivos .mp3
+└── output/              ← carpeta vacía, donde se generarán los archivos .mp3
 ```
 
 ---
@@ -97,7 +97,7 @@ Este proyecto se publica bajo la licencia MIT. Eres libre de usarlo, modificarlo
 
 ## 💡 Créditos
 
-Desarrollado por [@tuusuario](https://github.com/tuusuario) como primer repositorio público. Utiliza tecnologías de:
+Desarrollado por [@jozzer182](https://github.com/jozzer182) como primer repositorio público. Utiliza tecnologías de:
 
 - [Coqui TTS](https://github.com/coqui-ai/TTS)
 - [BeautifulSoup](https://www.crummy.com/software/BeautifulSoup/)
