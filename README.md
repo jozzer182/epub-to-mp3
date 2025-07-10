@@ -25,13 +25,19 @@ Convierte automáticamente el **primer archivo EPUB** encontrado en la carpeta `
 
 ## 📦 Instalación
 
-En tu terminal ejecuta lo siguiente:
+En tu terminal ejecuta lo siguiente para configurar el entorno correctamente:
 
 ```bash
-:: Crear entorno virtual (opcional pero recomendado)
 py -3.10 -m venv venv-epub2mp3
 venv-epub2mp3\Scripts\activate
-
+python -m pip install --upgrade pip
+pip install git+https://github.com/coqui-ai/TTS.git
+pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118 
+pip install transformers==4.36.2 --force-reinstall
+pip install numpy==1.22.0 --force-reinstall
+pip install beautifulsoup4 ebooklib
+pip install -r requirements.txt
+```
 # En Linux/MacOS usa:
 # source venv-epub2mp3/bin/activate
 
@@ -39,9 +45,31 @@ venv-epub2mp3\Scripts\activate
 git clone https://github.com/jozzer182/epub-to-mp3.git
 cd epub-to-mp3
 
-# Instalar dependencias
-pip install -r requirements.txt
+# 🛠️ PASO FINAL: Modificar el archivo `io.py` de Coqui TTS
+
+Después de instalar las dependencias, debes editar manualmente un archivo del paquete `TTS` para que el modelo `xtts_v2` funcione correctamente.
+
+Ubica este archivo dentro del entorno virtual (ajusta la ruta según tu usuario y nombre del entorno):
+
 ```
+C:\Users\<TU_USUARIO>\venv-epub2mp3\Lib\site-packages\TTS\utils\io.py
+```
+
+Y **reemplaza las siguientes dos líneas**:
+
+```python
+return torch.load(f, map_location=map_location, **kwargs)
+```
+
+por esta versión:
+
+```python
+return torch.load(f, map_location=map_location, weights_only=False, **kwargs)
+```
+
+Este cambio debe hacerse en ambas apariciones de esa línea dentro del archivo.
+
+> ⚠️ Este paso es necesario para evitar errores de carga del modelo XTTS.
 
 ---
 
@@ -55,26 +83,6 @@ pip install -r requirements.txt
 6. Abre el archivo `main.py` y presiona `F5` o haz clic en el botón ▶️ para ejecutar.
 
 > Esto asegura que estás usando el entorno virtual correcto dentro de VS Code.
-
----
-
-### 🔁 Pasos reproducibles sugeridos (si tienes problemas con las dependencias)
-
-Si al abrir el proyecto en VS Code se resaltan los imports como `ebooklib` o `bs4`, ejecuta estos comandos uno por uno desde tu terminal para asegurar una instalación limpia y compatible con el modelo `xtts_v2`:
-
-```bash
-py -3.10 -m venv venv-epub2mp3
-venv-epub2mp3\Scripts\activate
-python -m pip install --upgrade pip
-pip install git+https://github.com/coqui-ai/TTS.git
-pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118 
-pip install transformers==4.36.2 --force-reinstall
-pip install numpy==1.22.0 --force-reinstall
-pip install beautifulsoup4 ebooklib
-pip install -r requirements.txt
-```
-
-Con estos pasos el entorno debería estar completamente preparado y sin errores de importación en VS Code.
 
 ---
 
